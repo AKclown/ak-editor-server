@@ -1,0 +1,44 @@
+{
+  "name": "ak-editor-server",
+  "version": "1.0.0",
+  "description": "学习编辑器服务开发",
+  "main": "index.js",
+  "scripts": {
+    "commit": "git cz",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+  },
+  "keywords": [],
+  "author": "AKclown",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
+    "prettier": "^2.6.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
